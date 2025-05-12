@@ -1,0 +1,108 @@
+:root {
+  --bg: 25% 0.0075 70;
+  --red: #e50914;
+  --mobile--w: 360px;
+  --mobile--h: 540px;
+  --outline-w: 9px;
+  --preview-bg: #fff;
+}
+
+body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(
+    50deg,
+    oklch(from oklch(var(--bg)) 50% c h),
+    oklch(from oklch(var(--bg)) 90% c h)
+  );
+  background-attachment: fixed;
+  padding: 3rem 10vw;
+}
+
+.preview__container {
+  display: flex;
+  flex-wrap: wrap;
+  place-items: center;
+  place-content: center;
+  height: 100%;
+}
+
+.preview__container:has(:hover, :focus-within) .preview:not(:hover, :focus) {
+  opacity: 0.4;
+}
+
+.preview {
+  --shadow-blur: 24px;
+  --shadow-color: oklch(var(--bg));
+
+  /* Centralização da imagem */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  border: var(--outline-w) solid var(--border-color, transparent);
+  border-radius: 6px;
+  box-shadow: 0 0 var(--shadow-blur) 0 var(--shadow-color);
+
+  transition-property: border, box-shadow, filter, outline-offset, opacity, rotate, scale, z-index;
+  transition-duration: 0.15s, 0.15s, 0.6s, 0.6s, 0.3s, 0.3s, 0.3s, 0.15s;
+
+  /* Removido o filtro escuro */
+  filter: none;
+  mix-blend-mode: normal;
+  opacity: 0.85;
+
+  scale: 0.85;
+  rotate: var(--rotation, -4deg);
+
+  outline: var(--outline-w) solid var(--preview-bg);
+  outline-offset: var(--outline-w);
+
+  min-height: var(--mobile--h);
+  min-width: var(--mobile--w);
+  position: relative;
+}
+
+.preview:focus-within,
+.preview:hover {
+  --shadow-blur: 200px;
+  --shadow-color: var(--red);
+  --border-color: var(--red);
+
+  background-color: transparent;
+  mix-blend-mode: normal;
+  filter: none;
+  opacity: 1;
+  
+  outline-offset: calc(var(--outline-w) / 2);
+  
+  scale: 1;
+  rotate: 0deg;
+  
+  transition-property: border, box-shadow, filter, outline-offset, opacity, rotate, scale, z-index;
+  transition-duration: 0.15s, 0.15s, 0.3s, 0.3s, 0.3s, 0.3s, 0.3s, 0.15s;
+}
+
+.preview:focus-within {
+  z-index: 5;
+}
+
+.preview:hover {
+  z-index: 6;
+}
+
+.preview.mobile {
+  max-height: var(--mobile--h);
+  max-width: var(--mobile--w);
+}
+
+/* Rotação individual para cada card */
+.preview:nth-of-type(1) { --rotation: -4deg; }
+.preview:nth-of-type(2) { --rotation: 3deg; }
+.preview:nth-of-type(3) { --rotation: -1deg; }
+.preview:nth-of-type(4) { --rotation: -5deg; }
+.preview:nth-of-type(5) { --rotation: -2deg; }
+.preview:nth-of-type(6) { --rotation: 2deg; }
+.preview:nth-of-type(7) { --rotation: 4deg; }
