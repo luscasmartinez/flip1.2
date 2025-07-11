@@ -71,9 +71,9 @@ const Services: React.FC = () => {
     },
     {
       icon: <LineChart size={32} />,
-      title: "Performance",
+      title: "Vídeo",
       description: "Estratégias orientadas por dados para atingir objetivos concretos de conversão, aquisição e vendas.",
-      backgroundImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      backgroundImage:"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3p6dHdjNXNuaWtzdm1qYXFhanE5OW55Njh3N3h4ZDhteWZvdDg5dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZZenWI323QznL5938G/giphy.gif",
       route: "/servicos/performance"
     },
     {
