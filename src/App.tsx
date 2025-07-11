@@ -26,8 +26,7 @@ function App() {
           <main>
             <Hero />
             <Services />
-            <CaseStudies />        
-            <AccordionGallery/>
+            <CaseStudies />       
             <Process />
             <Testimonials />
             <Contact />
