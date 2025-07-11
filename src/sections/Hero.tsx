@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
             }`}
           >
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight">
-              <span className="block mb-2">Não somos uma agência!</span>
+              <span className="block mb-2">Nós não somos uma agência!</span>
                <span className="text-[#e50914]">Só você ainda não está com a gente!</span>
             </h1>
             
