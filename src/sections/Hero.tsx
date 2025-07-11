@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
           >
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight">
               <span className="block mb-2">Não somos uma agência!</span>
-               <span className="text-[#e50914]">Nós escalamos.</span> (pensar em algo melhor aqui)
+               <span className="text-[#e50914]">Só você ainda não está com a gente!</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
