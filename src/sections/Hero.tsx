@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
                 href="#contact" 
                 className="px-8 py-4 bg-[#e50914] hover:bg-[#c40812] text-gray-900 text-lg font-semibold rounded-lg transition-all duration-300 inline-flex items-center justify-center"
               >
-                Fale com um Especialista
+               Solicite um orçamento.
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
               <a 
