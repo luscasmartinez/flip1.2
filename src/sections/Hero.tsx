@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
                <span className="text-[#e50914]">Só você ainda não está com a gente!</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"> Vídeos, fotografias, tráfego pago, mentoria.
+            <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"> Vídeos, fotografias, tráfego pago, mentoria, pginas web.
 
             </p>
             
