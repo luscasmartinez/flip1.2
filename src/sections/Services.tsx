@@ -59,7 +59,7 @@ const Services: React.FC = () => {
       icon: <Layout size={32} />,
       title: "Site e páginas de venda",
       description: "Desenvolvemos páginas de conversão otimizadas que transformam visitantes em leads qualificados para o seu negócio.",
-      backgroundImage: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      backgroundImage:"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJkaGRlN3l0N2gzZ3B0ZXR6MzltaTI5cGR1YmQwN2VyZzd3bWxrZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgzoKnwFNmISR8I/giphy.gif",
       route: "/servicos/landing-pages"
     },
     {
