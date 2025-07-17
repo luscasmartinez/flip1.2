@@ -14,6 +14,7 @@ import PerformanceService from './pages/PerformanceService';
 import ConversaoService from './pages/ConversaoService';
 import AnaliseService from './pages/AnaliseService';
 import ConsultoriaService from './pages/ConsultoriaService';
+import Eventos from './pages/Eventos';
 
 import AccordionGallery from './sections/AccordionGallery';
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/servicos/conversao" element={<ConversaoService />} />
         <Route path="/servicos/analise" element={<AnaliseService />} />
         <Route path="/servicos/consultoria" element={<ConsultoriaService />} />
+        <Route path="/servicos/Eventos" element={<Eventos />} />
       </Routes>
       <Footer />
     </div>

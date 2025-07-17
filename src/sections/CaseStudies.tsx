@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CaseStudy {
   image: string;
@@ -170,7 +170,6 @@ const CaseStudies: React.FC = () => {
     };
   }, []);
 
-  // Array de logos de clientes/marcas
   const clientLogos = [
     "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
     "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png",
@@ -185,12 +184,20 @@ const CaseStudies: React.FC = () => {
     setActiveStudy(index);
   };
 
+  const nextStudy = () => {
+    setActiveStudy(prev => 
+      prev === caseCategories[activeTab].studies.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevStudy = () => {
+    setActiveStudy(prev => 
+      prev === 0 ? caseCategories[activeTab].studies.length - 1 : prev - 1
+    );
+  };
+
   return (
-    <section 
-      id="cases" 
-      className="py-24 bg-gray-950" 
-      ref={sectionRef}
-    >
+    <section id="cases" className="py-24 bg-gray-950" ref={sectionRef}>
       <div className="container mx-auto px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className={`inline-block text-[#e50914] font-semibold uppercase tracking-wider mb-4 transition-all duration-700 ${
@@ -211,13 +218,13 @@ const CaseStudies: React.FC = () => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center mb-8 space-x-2">
+        <div className="flex flex-wrap justify-center mb-4 space-x-2">
           {caseCategories.map((category, index) => (
             <button
               key={index}
               onClick={() => {
                 setActiveTab(index);
-                setActiveStudy(0); // Reset to first study when changing category
+                setActiveStudy(0);
               }}
               className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 mb-2 ${
                 activeTab === index 
@@ -230,20 +237,38 @@ const CaseStudies: React.FC = () => {
           ))}
         </div>
 
-        {/* Study Navigation */}
-        <div className="flex flex-wrap justify-center mb-8 space-x-2">
-          {caseCategories[activeTab].studies.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleStudyChange(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                activeStudy === index 
-                  ? 'bg-[#e50914] scale-125' 
-                  : 'bg-gray-600 hover:bg-gray-500'
-              }`}
-              aria-label={`Case ${index + 1}`}
-            />
-          ))}
+        {/* Study Navigation with Arrows */}
+        <div className="flex items-center justify-center mb-12 space-x-4">
+          <button 
+            onClick={prevStudy}
+            className="p-2 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all"
+            aria-label="Case anterior"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          
+          <div className="flex space-x-2">
+            {caseCategories[activeTab].studies.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleStudyChange(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  activeStudy === index 
+                    ? 'bg-[#e50914] scale-125' 
+                    : 'bg-gray-600 hover:bg-gray-500'
+                }`}
+                aria-label={`Case ${index + 1}`}
+              />
+            ))}
+          </div>
+          
+          <button 
+            onClick={nextStudy}
+            className="p-2 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all"
+            aria-label="Próximo case"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Case Studies Showcase */}
@@ -307,13 +332,11 @@ const CaseStudies: React.FC = () => {
           </div>
           
           <div className="relative bg-gray-900 rounded-xl overflow-hidden py-6">
-            {/* Gradientes laterais */}
             <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
             <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
             
             <div className="slider-container">
               <div className="slide-track animate-scroll">
-                {/* Duplicamos as logos para criar o efeito de loop contínuo */}
                 {[...clientLogos, ...clientLogos].map((logo, index) => (
                   <div key={index} className="slide px-8">
                     <img 
@@ -331,7 +354,6 @@ const CaseStudies: React.FC = () => {
         </div>
       </div>
 
-      {/* Estilos embutidos para o slider */}
       <style jsx>{`
         .slider-container {
           overflow: hidden;

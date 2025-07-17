@@ -78,14 +78,14 @@ const Services: React.FC = () => {
     },
     {
       icon: <MousePointer size={32} />,
-      title: "Conversão",
+      title: "Google meu negócio",
       description: "Aumentamos suas taxas de conversão através de testes A/B, análise de funil e melhorias contínuas.",
       backgroundImage: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       route: "/servicos/conversao"
     },
     {
       icon: <BarChart size={32} />,
-      title: "Análise",
+      title: "Fotografia",
       description: "Monitoramento de métricas-chave para identificar oportunidades e otimizar resultados constantemente.",
       backgroundImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       route: "/servicos/analise"
@@ -96,6 +96,13 @@ const Services: React.FC = () => {
       description: "Auxiliamos na definição de objetivos claros e estratégias eficientes para alcançar seus resultados de negócio.",
       backgroundImage: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       route: "/servicos/consultoria"
+    },
+    {
+      icon: <Trophy size={32} />,
+      title: "Eventos",
+      description: "Auxiliamos na definição de objetivos claros e estratégias eficientes para alcançar seus resultados de negócio.",
+      backgroundImage: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      route: "/servicos/Eventos"
     }
   ];
 
