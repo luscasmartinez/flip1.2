@@ -39,7 +39,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, bac
         </div>
         <div className="back">
           <div className="inner">
-            <p>{description}</p>
+            <p className='text-justify'>{description}</p>
             <button 
               onClick={handleNavigation}
               className="mt-4 px-6 py-2 bg-[#e50914] hover:bg-red-600 text-white font-semibold rounded-lg transition-colors duration-300"

@@ -10,7 +10,7 @@ import Contact from './sections/Contact';
 import Footer from './components/Footer';
 import LandingPagesService from './pages/LandingPagesService';
 import TrafegoPageService from './pages/TrafegoPageService';
-import PerformanceService from './pages/PerformanceService';
+import Video from './pages/Video';
 import ConversaoService from './pages/ConversaoService';
 import AnaliseService from './pages/AnaliseService';
 import ConsultoriaService from './pages/ConsultoriaService';
@@ -35,7 +35,7 @@ function App() {
         } />
         <Route path="/servicos/landing-pages" element={<LandingPagesService />} />
         <Route path="/servicos/trafego-pago" element={<TrafegoPageService />} />
-        <Route path="/servicos/performance" element={<PerformanceService />} />
+        <Route path="/servicos/Video" element={<Video />} />
         <Route path="/servicos/conversao" element={<ConversaoService />} />
         <Route path="/servicos/analise" element={<AnaliseService />} />
         <Route path="/servicos/consultoria" element={<ConsultoriaService />} />
