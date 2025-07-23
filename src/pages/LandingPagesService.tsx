@@ -48,10 +48,10 @@ const LandingPagesService: React.FC = () => {
               <Layout className="h-10 w-10 text-white" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Landing Pages que <span className="text-[#e50914]">Convertem</span>
+              Impulsione <span className="text-[#e50914]"> Presença Digital</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-              Desenvolvemos páginas de alta conversão que transformam visitantes em leads qualificados e clientes para o seu negócio.
+            <p className="text-xl text-justify text-gray-300 mb-10 max-w-3xl mx-auto">
+             Criamos páginas estratégicas e persuasivas que não só atraem visitantes, mas transformam cliques em oportunidades reais. Aumente sua visibilidade online, gere leads qualificados e conquiste mais clientes com uma presença digital que realmente vende.
             </p>
             <a 
               href="#contact" 
@@ -68,9 +68,10 @@ const LandingPagesService: React.FC = () => {
       <section className="py-20 bg-gray-950">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Por que escolher nossas Landing Pages?</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Cada página é desenvolvida com foco em resultados, utilizando as melhores práticas de conversão e UX.
+            <h2 className="text-4xl font-bold mb-6">Por que escolher nos escolher?</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto text-justify">
+              Cada detalhe é pensado para gerar resultados reais. Nossas landing pages e sites são portas de entrada para o crescimento do seu negócio, desenvolvidas com estratégia. Entregamos o que você realmente precisa: visibilidade, autoridade e clareza.
+
             </p>
           </div>
           
