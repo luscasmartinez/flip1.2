@@ -74,7 +74,7 @@ const Services: React.FC = () => {
       title: "Vídeo",
       description: "Estratégias orientadas por dados para atingir objetivos concretos de conversão, aquisição e vendas.",
       backgroundImage:"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3p6dHdjNXNuaWtzdm1qYXFhanE5OW55Njh3N3h4ZDhteWZvdDg5dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZZenWI323QznL5938G/giphy.gif",
-      route: "/servicos/performance"
+      route: "/servicos/video"
     },
     {
       icon: <MousePointer size={32} />,

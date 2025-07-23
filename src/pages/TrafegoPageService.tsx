@@ -25,16 +25,6 @@ const TrafegoPageService: React.FC = () => {
       description: "Facebook e Instagram com segmentação avançada para seu público ideal",
       icon: "📱"
     },
-    {
-      name: "LinkedIn Ads",
-      description: "Ideal para B2B e segmentação profissional específica",
-      icon: "💼"
-    },
-    {
-      name: "TikTok Ads",
-      description: "Geração de leads através de conteúdo viral e engajador",
-      icon: "🎵"
-    }
   ];
 
   const benefits = [
@@ -150,7 +140,7 @@ const TrafegoPageService: React.FC = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="content-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {platforms.map((platform, index) => (
               <div key={index} className="bg-gray-800 p-6 rounded-xl text-center hover:bg-gray-700 transition-colors duration-300">
                 <div className="text-4xl mb-4">{platform.icon}</div>
