@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Volume, Volume2, Play, Pause } from 'lucide-react';
 
 interface CaseStudy {
   image: string;
+  video?: string;
   title: string;
   client: string;
   description: string;
@@ -22,6 +23,9 @@ const CaseStudies: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState(0);
   const [activeStudy, setActiveStudy] = useState(0);
+  const [videoMuted, setVideoMuted] = useState(true);
+  const [videoPlaying, setVideoPlaying] = useState(false);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const caseCategories: CaseCategory[] = [
     {
@@ -29,18 +33,20 @@ const CaseStudies: React.FC = () => {
       studies: [
         {
           image: "https://imagineag.com.br/wp-content/uploads/2022/11/criacao_videos_para_empresas-1024x1000.jpg",
+          video: "https://i.imgur.com/U7aUZgh.mp4",
           title: "Vídeos que vendem, histórias que conectam.",
           client: "E-commerce de Moda",
           description: "Desenvolvemos uma série de vídeos institucionais e de produto que resultaram em um aumento significativo no engajamento e conversões. A estratégia combinou storytelling emocional com demonstrações claras de produtos.",
           results: [
-            { label: "Aumento em Conversões", value: "+187%" },
-            { label: "Redução no CPA", value: "-42%" },
-            { label: "Aumento no ROI", value: "+210%" },
-            { label: "Leads Gerados", value: "2.450+" }
+            { label: "Visualizações", value: "+1 Milhão" },
+            { label: "Curtidas", value: "+ 19 MIL" },
+            { label: "Comentários", value: "759" },
+            { label: "Contas alcançadas", value: "+ 600 MIL" }
           ]
         },
         {
           image: "https://th.bing.com/th/id/OIP.3qF5q3Q9j6Z9Q9Q9Q9Q9QwHaE8?pid=ImgDet&w=1920&h=1280&rs=1",
+          video: "https://i.imgur.com/5q4XWJL.mp4",
           title: "Campanha de lançamento viral",
           client: "Startup de Tecnologia",
           description: "Criação de vídeo viral para lançamento de produto, combinando humor e informação técnica. O vídeo alcançou mais de 5 milhões de visualizações orgânicas.",
@@ -170,15 +176,36 @@ const CaseStudies: React.FC = () => {
     };
   }, []);
 
-  const clientLogos = [
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png"
-  ];
+  useEffect(() => {
+    // Pausar vídeo quando mudar de study
+    const currentVideo = videoRefs.current[activeStudy];
+    if (currentVideo) {
+      currentVideo.pause();
+      setVideoPlaying(false);
+    }
+  }, [activeStudy, activeTab]);
+
+  const handleVideoPlay = () => {
+    const video = videoRefs.current[activeStudy];
+    if (video) {
+      if (video.paused) {
+        video.play()
+          .then(() => setVideoPlaying(true))
+          .catch(e => {
+            console.error("Erro ao reproduzir:", e);
+            // Fallback: tenta reproduzir mutado
+            video.muted = true;
+            video.play().then(() => {
+              setVideoPlaying(true);
+              setVideoMuted(true);
+            });
+          });
+      } else {
+        video.pause();
+        setVideoPlaying(false);
+      }
+    }
+  };
 
   const handleStudyChange = (index: number) => {
     setActiveStudy(index);
@@ -195,6 +222,16 @@ const CaseStudies: React.FC = () => {
       prev === 0 ? caseCategories[activeTab].studies.length - 1 : prev - 1
     );
   };
+
+  const clientLogos = [
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png"
+  ];
 
   return (
     <section id="cases" className="py-24 bg-gray-950" ref={sectionRef}>
@@ -278,13 +315,65 @@ const CaseStudies: React.FC = () => {
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
             }`}
             style={{ height: '500px' }}
+            onClick={handleVideoPlay}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
-            <img 
-              src={caseCategories[activeTab].studies[activeStudy].image} 
-              alt={caseCategories[activeTab].studies[activeStudy].title} 
-              className="absolute h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-            />
+            
+            {caseCategories[activeTab].studies[activeStudy].video ? (
+              <>
+                <video
+                  ref={el => videoRefs.current[activeStudy] = el}
+                  loop
+                  muted={videoMuted}
+                  playsInline
+                  className="absolute h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  poster={caseCategories[activeTab].studies[activeStudy].image}
+                >
+                  <source 
+                    src={caseCategories[activeTab].studies[activeStudy].video} 
+                    type="video/mp4" 
+                  />
+                  Seu navegador não suporta vídeos HTML5.
+                </video>
+
+                {/* Botão de play/pause */}
+                <div className="absolute inset-0 flex items-center justify-center z-20 cursor-pointer">
+                  <div className={`flex items-center justify-center rounded-full transition-all duration-300 ${
+                    videoPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-100'
+                  }`}>
+                    <div className="w-20 h-20 bg-[#e50914] bg-opacity-80 rounded-full flex items-center justify-center">
+                      {videoPlaying ? (
+                        <Pause className="w-10 h-10 text-white" />
+                      ) : (
+                        <Play className="w-10 h-10 text-white" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Botão de mute */}
+                <button 
+                  className="absolute bottom-4 right-4 z-20 bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setVideoMuted(!videoMuted);
+                  }}
+                  aria-label={videoMuted ? 'Ativar som' : 'Desativar som'}
+                >
+                  {videoMuted ? (
+                    <Volume className="w-5 h-5 text-white" />
+                  ) : (
+                    <Volume2 className="w-5 h-5 text-white" />
+                  )}
+                </button>
+              </>
+            ) : (
+              <img 
+                src={caseCategories[activeTab].studies[activeStudy].image} 
+                alt={caseCategories[activeTab].studies[activeStudy].title} 
+                className="absolute h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            )}
           </div>
 
           <div className={`transition-all duration-700 ${
