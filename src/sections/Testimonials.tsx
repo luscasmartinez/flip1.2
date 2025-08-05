@@ -83,13 +83,9 @@ const Testimonials: React.FC = () => {
           <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-all duration-700 delay-100 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Palavras de quem <span className="text-[#e50914]">confia</span> em nós
+            Veja o que nossos clientes têm a dizer sobre os  <span className="text-[#e50914]">resultados</span> que alcançamos juntos.
           </h2>
-          <p className={`text-xl text-gray-300 transition-all duration-700 delay-200 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            Veja o que nossos clientes têm a dizer sobre os resultados que alcançamos juntos.
-          </p>
+          
         </div>
 
         <div className="max-w-4xl mx-auto relative">
