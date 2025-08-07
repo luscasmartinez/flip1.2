@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MousePointer, TrendingUp, LineChart, Trophy, Layout, BarChart } from 'lucide-react';
 
@@ -14,16 +14,56 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, backgroundImage, route }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [countdown, setCountdown] = useState<number>(0);
   const navigate = useNavigate();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const COUNTDOWN_DURATION = 5; // segundos
 
   const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+    if (!isFlipped) {
+      // Iniciar contagem regressiva quando o card é virado
+      setIsFlipped(true);
+      setCountdown(COUNTDOWN_DURATION);
+    } else {
+      // Cancelar contagem regressiva quando o card é desvirado
+      setIsFlipped(false);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    }
   };
 
-  const handleNavigation = (e: React.MouseEvent) => {
+  const cancelRedirect = (e: React.MouseEvent) => {
     e.stopPropagation();
-    navigate(route);
+    setIsFlipped(false);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
   };
+
+  useEffect(() => {
+    if (isFlipped && countdown > 0) {
+      intervalRef.current = setInterval(() => {
+        setCountdown(prev => {
+          if (prev <= 1) {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+            navigate(route);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isFlipped, countdown, navigate, route]);
+
+  const progressPercentage = ((COUNTDOWN_DURATION - countdown) / COUNTDOWN_DURATION) * 100;
+
   return (
     <div className="col" onClick={handleFlip}>
       <div className={`container ${isFlipped ? 'hover' : ''}`}>
@@ -39,13 +79,31 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, bac
         </div>
         <div className="back">
           <div className="inner">
-            <p className='text-justify'>{description}</p>
-            <button 
-              onClick={handleNavigation}
-              className="mt-4 px-6 py-2 bg-[#e50914] hover:bg-red-600 text-white font-semibold rounded-lg transition-colors duration-300"
-            >
-              Ver Detalhes
-            </button>
+            {isFlipped ? (
+              <>
+                <p className='text-justify mb-4'>
+                  Que bom que se interessou por nossos serviços de {title} você irá gostar de ver em <strong className="text-[#e50914]">{countdown}</strong> segundos...
+                </p>
+                
+                <div 
+                  className="countdown-progress"
+                  style={{ width: `${progressPercentage}%` }}
+                />
+              </>
+            ) : (
+              <>
+                <p className='text-justify'>{description}</p>
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(route);
+                  }}
+                  className="mt-4 px-6 py-2 bg-[#e50914] hover:bg-red-600 text-white font-semibold rounded-lg transition-colors duration-300"
+                >
+                  Ver Detalhes
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
