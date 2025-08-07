@@ -35,7 +35,7 @@ const CaseStudies: React.FC = () => {
           image: "https://imagineag.com.br/wp-content/uploads/2022/11/criacao_videos_para_empresas-1024x1000.jpg",
           video: "https://i.imgur.com/U7aUZgh.mp4",
           title: "Vídeos que vendem, histórias que conectam.",
-          client: "E-commerce de Moda",
+          client: "Ricci",
           description: "Desenvolvemos uma série de vídeos institucionais e de produto que resultaram em um aumento significativo no engajamento e conversões. A estratégia combinou storytelling emocional com demonstrações claras de produtos.",
           results: [
             { label: "Visualizações", value: "+1 Milhão" },

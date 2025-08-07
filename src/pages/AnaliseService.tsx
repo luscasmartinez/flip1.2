@@ -177,13 +177,13 @@ const AnaliseService: React.FC = () => {
             Pronto para tomar decisões baseadas em dados?
           </h2>
           <p className="text-xl text-gray-800 mb-8 max-w-2xl mx-auto">
-            Solicite uma análise gratuita e descubra insights valiosos sobre seu negócio.
+            Solicite uma análise e descubra insights valiosos sobre seu negócio.
           </p>
           <a 
             href="#contact" 
             className="inline-flex items-center px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Solicitar Análise Gratuita
+            Solicitar Análise
             <ArrowRight className="ml-2 h-5 w-5" />
           </a>
         </div>
