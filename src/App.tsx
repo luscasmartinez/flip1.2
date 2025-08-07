@@ -12,7 +12,7 @@ import LandingPagesService from './pages/LandingPagesService';
 import TrafegoPageService from './pages/TrafegoPageService';
 import Video from './pages/Video';
 import ConversaoService from './pages/ConversaoService';
-import AnaliseService from './pages/AnaliseService';
+import Fotografia from './pages/Fotografia';
 import ConsultoriaService from './pages/ConsultoriaService';
 import Eventos from './pages/Eventos';
 
@@ -37,7 +37,7 @@ function App() {
         <Route path="/servicos/trafego-pago" element={<TrafegoPageService />} />
         <Route path="/servicos/Video" element={<Video />} />
         <Route path="/servicos/conversao" element={<ConversaoService />} />
-        <Route path="/servicos/analise" element={<AnaliseService />} />
+        <Route path="/servicos/fotografia" element={<Fotografia />} />
         <Route path="/servicos/consultoria" element={<ConsultoriaService />} />
         <Route path="/servicos/Eventos" element={<Eventos />} />
       </Routes>
