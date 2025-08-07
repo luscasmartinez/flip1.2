@@ -77,15 +77,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, bac
             <span>Saiba mais</span>
           </div>
         </div>
-        <div className="back">
+        <div className={`back ${isFlipped && countdown > 0 ? 'countdown-active' : ''}`}>
           <div className="inner">
-            {isFlipped ? (
+            {isFlipped && countdown > 0 ? (
               <>
                 <p className='text-justify mb-4'>
                   Que bom que se interessou por nossos serviços de {title} você irá gostar de ver em <strong className="text-[#e50914]">{countdown}</strong> segundos...
                 </p>
-                
-                <div 
+
+                <div
                   className="countdown-progress"
                   style={{ width: `${progressPercentage}%` }}
                 />
@@ -93,7 +93,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, bac
             ) : (
               <>
                 <p className='text-justify'>{description}</p>
-                <button 
+                <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigate(route);
@@ -117,7 +117,7 @@ const Services: React.FC = () => {
       icon: <Layout size={32} />,
       title: "Site e páginas de venda",
       description: "Desenvolvemos páginas de conversão otimizadas que transformam visitantes em leads qualificados para o seu negócio.",
-      backgroundImage:"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJkaGRlN3l0N2gzZ3B0ZXR6MzltaTI5cGR1YmQwN2VyZzd3bWxrZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgzoKnwFNmISR8I/giphy.gif",
+      backgroundImage: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJkaGRlN3l0N2gzZ3B0ZXR6MzltaTI5cGR1YmQwN2VyZzd3bWxrZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgzoKnwFNmISR8I/giphy.gif",
       route: "/servicos/landing-pages"
     },
     {
@@ -131,7 +131,7 @@ const Services: React.FC = () => {
       icon: <LineChart size={32} />,
       title: "Vídeo",
       description: "Estratégias orientadas por dados para atingir objetivos concretos de conversão, aquisição e vendas.",
-      backgroundImage:"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3p6dHdjNXNuaWtzdm1qYXFhanE5OW55Njh3N3h4ZDhteWZvdDg5dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZZenWI323QznL5938G/giphy.gif",
+      backgroundImage: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3p6dHdjNXNuaWtzdm1qYXFhanE5OW55Njh3N3h4ZDhteWZvdDg5dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZZenWI323QznL5938G/giphy.gif",
       route: "/servicos/video"
     },
     {
@@ -146,7 +146,7 @@ const Services: React.FC = () => {
       title: "Fotografia",
       description: "Monitoramento de métricas-chave para identificar oportunidades e otimizar resultados constantemente.",
       backgroundImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-      route: "/servicos/analise"
+      route: "/servicos/fotografia"
     },
     {
       icon: <Trophy size={32} />,
@@ -178,10 +178,10 @@ const Services: React.FC = () => {
             Combinamos estratégia, criatividade e tecnologia para entregar resultados mensuráveis.
           </p>
         </div>
-        
+
         <div className="cols">
           {services.map((service, index) => (
-            <ServiceCard 
+            <ServiceCard
               key={index}
               icon={service.icon}
               title={service.title}
